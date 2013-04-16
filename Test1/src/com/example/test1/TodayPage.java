@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -83,7 +84,13 @@ public class TodayPage extends Activity
 	{
 		super.onStop();
 	}
-	protected void onResume()
+	
+	protected void onPause()//save data!
+	{
+		super.onResume();
+	}
+	
+	protected void onResume()//load what changed
 	{
 		super.onResume();
 	}
@@ -91,6 +98,11 @@ public class TodayPage extends Activity
 	protected void onDestroy()
 	{
 		super.onDestroy();
+	}
+	
+	protected void reply_click(ImageButton b)
+	{
+	     Set_Emotions.ImageButtonToChange = b;
 	}
 
 }

@@ -19,7 +19,7 @@
           android:layout_alignParentTop="false"
           android:layout_marginRight="43dp"
           android:layout_marginTop="74dp"
-          android:layout_toLeftOf="@+id/button2"
+          android:layout_toLeftOf="@+id/ImageButton2"
           android:text="Morning"
           android:textSize="25sp" />
 
@@ -28,13 +28,36 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_alignLeft="@+id/textView1"
-          android:layout_below="@+id/button2"
+          android:layout_below="@+id/ImageButton2"
           android:layout_marginTop="58dp"
           android:text="Afternoon"
           android:textSize="25sp" />
+      
+           <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/textView1"
+            android:layout_below="@+id/ImageButton4"
+            android:layout_marginTop="66dp"
+            android:text="Evening"
+            android:textSize="25sp" />
 
-      <Button
-          android:id="@+id/button2" 
+      <ImageButton
+            android:contentDescription="Click Me"
+            android:id="@+id/ImageButton1"
+            android:onClick="reply_click(this)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ImageButton5"
+            android:layout_alignTop="@+id/textView2"
+            android:minHeight="70dp"
+            android:minWidth="70dp"
+            android:text="Set..." />
+                   
+      <ImageButton
+          android:contentDescription="Click Me"
+          android:id="@+id/ImageButton2" 
           android:onClick="reply_click(this)"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -44,86 +67,18 @@
           android:layout_marginRight="77dp"
           android:minHeight="70dp"
           android:minWidth="70dp"
-          android:text="Set..." />
-      
-       <Button
-           android:id="@+id/button5"
-           android:onClick="reply_click(this.id)"
-           style="?android:attr/buttonStyleSmall"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_above="@+id/textView2"
-           android:layout_alignRight="@+id/button2"
-           android:layout_alignTop="@+id/textView1"
-           android:layout_below="@id/button1"
-           android:layout_toRightOf="@+id/textView1"
-           android:maxHeight="25dp"
-           android:maxWidth="70dp"
-           android:text="Change..."
-           android:textSize="10sp" />
+          android:text="Set..." />   
 
-        <Button
-            android:id="@+id/button6"
-            android:onClick="reply_click(this.id)"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/button3"
-            android:layout_below="@+id/button3"
-            android:layout_toRightOf="@+id/textView1"
-            android:text="Change..."
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/textView1"
-            android:layout_below="@+id/button4"
-            android:layout_marginTop="66dp"
-            android:text="Evening"
-            android:textSize="25sp" />
-
-        <Button
-            android:id="@+id/button3"
-            android:onClick="reply_click(this.id)"
+        <ImageButton
+            android:contentDescription="Click Me"
+            android:id="@+id/ImageButton3"
+            android:onClick="reply_click(this)"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView3"
             android:layout_toRightOf="@+id/textView1"
             android:minHeight="70dp"
             android:minWidth="70dp"
-            android:text="Set..." />
-
-        <Button
-            android:id="@+id/button4"
-            android:onClick="reply_click(this.id)"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/button1"
-            android:layout_below="@+id/button1"
-            android:maxHeight="25dp"
-            android:maxWidth="70dp"
-            android:text="Change..."
-            android:textSize="10sp" />
-
-        <Button
-            android:id="@+id/button1"
-            android:onClick="reply_click(this.id)"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/button5"
-            android:layout_alignTop="@+id/textView2"
-            android:minHeight="70dp"
-            android:minWidth="70dp"
-            android:text="Set..." />
-        
-   	    <script android:type = "@+type/javascript">
-			function reply_click(Button b)
-			{
- 		       Set_Emotions.buttonToChange = b;
-			}
-	    </script>
+            android:text="Set..." /> 	  
 
 </RelativeLayout>

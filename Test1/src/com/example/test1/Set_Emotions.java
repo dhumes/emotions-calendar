@@ -2,12 +2,12 @@ package com.example.test1;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.app.Activity;
 
 public class Set_Emotions extends Activity{
 	
-	Button buttonToChange = null;
+	static ImageButton ImageButtonToChange = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
