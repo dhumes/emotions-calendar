@@ -14,16 +14,28 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MyHomeScreen"
+            android:name="com.example.test1.MyHomeScreen"
+            
             android:label="MyHomeScreen" >
-            <intent-filter>
+           
+        </activity>
+        <activity
+            android:name="com.example.test1.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.test1.Set_Emotions"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.test1.TodayPage"
+            android:label="@string/app_name" >
+             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:label="@string/app_name"></activity>
-        <activity android:name=".Set_Emotions" android:label="@string/app_name"></activity>
     </application>
 
 </manifest>

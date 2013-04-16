@@ -1,13 +1,18 @@
 package com.example.test1;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.TimeZone;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class TodayPage extends Activity
@@ -39,17 +44,21 @@ public class TodayPage extends Activity
 		OnClickListener toFeelingSelect = new OnClickListener(){
 			public void onClick(View v)
 			{
-				Intent nextIntent = new Intent(TodayPage.this, MainActivity.class);
+				Intent nextIntent = new Intent(TodayPage.this, Set_Emotions.class);
 				TodayPage.this.startActivity(nextIntent);
 			}
 		};
 		
 		for (Button b : buttonsToFeelingSelect)
 		{ b.setOnClickListener(toFeelingSelect); }
-				
-				
+			
+		SimpleDateFormat date = new SimpleDateFormat("E - mm-dd", Locale.US);
+		date.setTimeZone(TimeZone.getTimeZone("PST"));
+		TextView dateText = new TextView(this);
+		dateText.setGravity(Gravity.CENTER);
+		dateText.setText("Today - " + date);
+		setContentView(dateText);		
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)

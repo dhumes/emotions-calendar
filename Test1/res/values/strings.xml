@@ -11,5 +11,6 @@
     <string name="Shy">Shy</string>
     <string name="Sick">Sick</string>
     <string name="String">How do you feel?</string>
+    <string name="title_activity_today_page">TodayPage</string>
 
 </resources>
