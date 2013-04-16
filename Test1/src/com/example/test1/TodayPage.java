@@ -1,12 +1,17 @@
 package com.example.test1;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.TimeZone;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -18,42 +23,44 @@ import android.widget.TextView;
 
 public class TodayPage extends Activity
 {
-
+	private SimpleDateFormat date;
+	int[] emotions = new int[]{0, 0, 0};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.todaypagelayout);
 		
-		Button MorningSet = (Button) findViewById(R.id.button1);
-		Button MorningChange = (Button) findViewById(R.id.button4);
+		//Button MorningSet = (Button) findViewById(R.id.button1);
+		Button MorningChange = (Button) findViewById(R.id.morningChange);
 		
-		Button AfternoonSet = (Button) findViewById(R.id.button2);
-		Button AfternoonChange = (Button) findViewById(R.id.button5);
+		//Button AfternoonSet = (Button) findViewById(R.id.button2);
+		Button AfternoonChange = (Button) findViewById(R.id.afternoonChange);
 		
-		Button EveningSet = (Button) findViewById(R.id.button3);
-		Button EveningChange = (Button) findViewById(R.id.button6);
+		//Button EveningSet = (Button) findViewById(R.id.button3);
+		Button EveningChange = (Button) findViewById(R.id.eveningChange);
 		
 		ArrayList<Button> buttonsToFeelingSelect = new ArrayList<Button>();
-		buttonsToFeelingSelect.add(MorningSet);
+		//buttonsToFeelingSelect.add(MorningSet);
 		buttonsToFeelingSelect.add(MorningChange);
-		buttonsToFeelingSelect.add(AfternoonSet);
+		//buttonsToFeelingSelect.add(AfternoonSet);
 		buttonsToFeelingSelect.add(AfternoonChange);
-		buttonsToFeelingSelect.add(EveningSet);
+		//buttonsToFeelingSelect.add(EveningSet);
 		buttonsToFeelingSelect.add(EveningChange);
 		
 		OnClickListener toFeelingSelect = new OnClickListener(){
 			public void onClick(View v)
 			{
 				Intent nextIntent = new Intent(TodayPage.this, Set_Emotions.class);
-				TodayPage.this.startActivity(nextIntent);
+				startActivityForResult(nextIntent, v.getId());
 			}
 		};
 		
 		for (Button b : buttonsToFeelingSelect)
 		{ b.setOnClickListener(toFeelingSelect); }
 			
-		SimpleDateFormat date = new SimpleDateFormat("E - mm-dd", Locale.US);
+		date = new SimpleDateFormat("E - mm-dd", Locale.US);
 		date.setTimeZone(TimeZone.getTimeZone("PST"));
 		TextView dateText = new TextView(this);
 		dateText.setGravity(Gravity.CENTER);
@@ -67,6 +74,13 @@ public class TodayPage extends Activity
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.today_page, menu);
 		return true;
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		Button pressed = (Button)findViewById(requestCode);
+		int emotion = (Integer)data.getExtras().get("emotionSelected");	
 	}
 	
 	protected void onStart()
@@ -88,6 +102,15 @@ public class TodayPage extends Activity
 	protected void onPause()//save data!
 	{
 		super.onResume();
+		String FILENAME = date.toString();
+		String string = "information to add";
+
+		FileOutputStream fos;
+		try {
+			fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+			fos.write(string.getBytes());
+			fos.close();
+		} catch (FileNotFoundException e) {e.printStackTrace();} catch (IOException e) {e.printStackTrace();}
 	}
 	
 	protected void onResume()//load what changed
@@ -102,7 +125,13 @@ public class TodayPage extends Activity
 	//a change
 	protected void reply_click(ImageButton b)
 	{
-	     Set_Emotions.ImageButtonToChange = b;
+	     //Set_Emotions.ImageButtonToChange = b;
+	}
+	
+	public static Drawable findImageToUse(int i )
+	{
+		
+	
 	}
 
 }
