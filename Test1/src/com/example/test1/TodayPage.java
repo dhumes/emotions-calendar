@@ -99,7 +99,7 @@ public class TodayPage extends Activity
 	{
 		super.onDestroy();
 	}
-	
+	//a change
 	protected void reply_click(ImageButton b)
 	{
 	     Set_Emotions.ImageButtonToChange = b;
