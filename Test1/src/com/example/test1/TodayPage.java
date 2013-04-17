@@ -75,12 +75,16 @@ public class TodayPage extends Activity
 		getMenuInflater().inflate(R.menu.today_page, menu);
 		return true;
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
+		//button on Today page that was pressed
 		Button pressed = (Button)findViewById(requestCode);
+		//integer value of emotion selected on selection page
 		int emotion = (Integer)data.getExtras().get("emotionSelected");	
+		//switches image
+		pressed.setBackgroundResource(findImageToUse(emotion));
 	}
 	
 	protected void onStart()
