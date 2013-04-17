@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#11CC11" >
+
+    <TextView
+            android:id="@+id/editText0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize = "30dp"
+            android:text="Select Statistic Configurations"
+            android:gravity = "center"
+            android:layout_marginTop = "20dp"
+			android:textColor="#FFFFFF">
+
+        </TextView>
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp" 
+        android:layout_marginRight = "10dp">
+
+        <TextView
+            android:id="@+id/editText1"
+            android:layout_width="99dp"
+            android:layout_height="match_parent"
+            android:textSize = "15dp"
+            android:gravity = "center"
+            android:text="Start\nDate:" 
+			android:textColor="#FFFFFF">
+
+
+        </TextView>
+
+        <Button
+            android:id="@+id/start_month"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Month"
+            android:background="#EEEEEE" />
+
+        <Button
+            android:id="@+id/start_day"
+            android:layout_width="wrap_content"
+            android:background="#EEEEEE"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Day"/>
+
+        <Button
+            android:id="@+id/start_year"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Year"
+            android:background="#EEEEEE" />
+
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight = "10dp"
+         >
+
+        <TextView
+            android:id="@+id/editText2"
+            android:layout_width="99dp"
+            android:layout_height="match_parent"
+            android:textSize = "15dp"
+            android:gravity = "center"
+            android:text="End\nDate:"
+			android:textColor="#FFFFFF" >
+
+        </TextView>
+
+        <Button
+            android:id="@+id/end_month"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Month" 
+            android:background="#EEEEEE"/>
+
+        <Button
+            android:id="@+id/end_day"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Day"
+            android:background="#EEEEEE" />
+
+        <Button
+            android:id="@+id/end_year"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Year"
+            android:background="#EEEEEE" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp" 
+        android:layout_marginRight = "10dp">
+
+        <TextView
+            android:id="@+id/editText3"
+            android:layout_width="99dp"
+            android:layout_height="match_parent"
+            android:textSize = "15dp"
+            android:gravity = "center"
+            android:text="Time\nOf Day:"
+			android:textColor="#FFFFFF" >
+
+        </TextView>
+
+        <Button
+            android:id="@+id/time_of_day"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="All" 
+            android:background="#EEEEEE"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/go"
+        android:layout_width="119dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "30dp"
+        android:layout_gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:text="View Emotion Statistics!" 
+        android:background="#EEEEEE"/>
+
+</LinearLayout>

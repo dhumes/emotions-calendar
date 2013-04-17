@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+/home/ronald/git/emotions-calendar/.metadata/.plugins/org.eclipse.jdt.core
+3395883707.index
+4187315669.index
+3571332489.index

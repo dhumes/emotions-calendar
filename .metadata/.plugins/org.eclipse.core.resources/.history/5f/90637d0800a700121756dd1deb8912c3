@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/page2"
+         android:title="Page 2"
+         android:showAsAction="ifRoom|withText"></item>
+    <item android:id="@+id/homescreen" 
+        android:title="Home Screen" 
+        android:icon="@drawable/calendar"
+        android:orderInCategory="2"
+        android:showAsAction="ifRoom|withText"></item>
+    <item android:id="@+id/mainactivity" 
+        android:title="Main Activity"
+        android:orderInCategory="1"
+        android:showAsAction="ifRoom|withText"></item>
+    
+
+</menu>
