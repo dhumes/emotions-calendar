@@ -128,10 +128,25 @@ public class TodayPage extends Activity
 	     //Set_Emotions.ImageButtonToChange = b;
 	}
 	
-	/*public static Drawable findImageToUse(int i )
+	public static int findImageToUse(int i )
 	{
+		//0 = startIcon, 1 = happy, 2 = sad, 3 = angry, 4 = shy, 5 = sick, 6 = excited
+		//in order to add new emotions just set an integer value with the new image
+		switch(i)
+		{
+		case 0: return (R.drawable.ic_launcher);
+		case 1: return (R.drawable.happy);
+		case 2: return (R.drawable.sad);
+		case 3: return (R.drawable.angry);
+		case 4: return (R.drawable.shy);
+		case 5: return (R.drawable.sick);
+		case 6: return (R.drawable.excited);
+		}
+		
+		return -1;
+		
 		
 	
-	}*/
+	}
 
 }
