@@ -79,8 +79,8 @@ public class welcomeMenu extends Activity {
         Button weekly= (Button) findViewById(R.id.weekly);
         weekly.setOnClickListener(new OnClickListener(){
         public void onClick(View arg0) {
-            SharedPreferences settings = getSharedPreferences("UserInfo", 0);
-            SharedPreferences.Editor editor = settings.edit();
+            SharedPreferences name = getSharedPreferences("UserInfo", 0);
+            SharedPreferences.Editor editor = name.edit();
         	EditText username = (EditText) findViewById(R.id.nameinput);
         	editor.putString("Name",username.getText().toString());
         	editor.commit();
@@ -92,8 +92,8 @@ public class welcomeMenu extends Activity {
         Button today = (Button) findViewById(R.id.today);
         today.setOnClickListener(new OnClickListener(){
         public void onClick(View arg0) {
-            SharedPreferences settings = getSharedPreferences("UserInfo", 0);
-            SharedPreferences.Editor editor = settings.edit();
+            SharedPreferences name = getSharedPreferences("UserInfo", 0);
+            SharedPreferences.Editor editor = name.edit();
         	EditText username = (EditText) findViewById(R.id.nameinput);
         	editor.putString("Name",username.getText().toString());
         	editor.commit();
@@ -105,8 +105,8 @@ public class welcomeMenu extends Activity {
         Button stats = (Button) findViewById(R.id.stats);
         stats.setOnClickListener(new OnClickListener(){
         	public void onClick(View arg0){
-                SharedPreferences settings = getSharedPreferences("UserInfo", 0);
-                SharedPreferences.Editor editor = settings.edit();
+                SharedPreferences name = getSharedPreferences("UserInfo", 0);
+                SharedPreferences.Editor editor = name.edit();
             	EditText username = (EditText) findViewById(R.id.nameinput);
             	editor.putString("Name",username.getText().toString());
             	editor.commit();

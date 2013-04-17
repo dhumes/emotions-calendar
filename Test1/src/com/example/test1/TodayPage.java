@@ -65,7 +65,7 @@ public class TodayPage extends Activity
 		TextView dateText = new TextView(this);
 		dateText.setGravity(Gravity.CENTER);
 		dateText.setText("Today - " + date);
-		setContentView(dateText);		
+		//setContentView(dateText);		
 	}
 
 	@Override
