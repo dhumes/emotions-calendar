@@ -115,13 +115,18 @@ public class welcomeMenu extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
     	
       switch (item.getItemId()) {
-      case R.id.mainactivity:
-    	Intent mainactivity_intent = new Intent(welcomeMenu.this, MainActivity.class);
-      	welcomeMenu.this.startActivity(mainactivity_intent);
+      case R.id.Today:
+    	Intent today_intent = new Intent(welcomeMenu.this, TodayPage.class);
+      	welcomeMenu.this.startActivity(today_intent);
         break;
-      case R.id.homescreen:
-    	Intent homescreen_intent = new Intent(welcomeMenu.this, MyHomeScreen.class);
-    	welcomeMenu.this.startActivity(homescreen_intent);
+      case R.id.Weekly:
+    	Intent weekly_intent = new Intent(welcomeMenu.this, MyHomeScreen.class);
+    	welcomeMenu.this.startActivity(weekly_intent);
+    	break;
+      case R.id.Stats:
+      	Intent stats_intent = new Intent(welcomeMenu.this, ConfigureStats.class);
+        welcomeMenu.this.startActivity(stats_intent);
+        break;
       default:
         break;
       }
