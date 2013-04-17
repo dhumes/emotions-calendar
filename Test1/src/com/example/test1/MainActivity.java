@@ -3,7 +3,6 @@ package com.example.test1;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -11,7 +10,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
 	}
 
 	@Override

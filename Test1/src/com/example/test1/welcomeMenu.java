@@ -72,7 +72,7 @@ public class welcomeMenu extends Activity {
     			alertDialog.show();
     			}
     		}); 
-        /*Button select_user = (Button) findViewById(R.id.selectUser);       
+        Button select_user = (Button) findViewById(R.id.selectUser);       
         select_user.setOnCreateContextMenuListener(this);*/
         
         
@@ -85,8 +85,21 @@ public class welcomeMenu extends Activity {
         	editor.putString("Name",username.getText().toString());
         	editor.commit();
         	
-        	Intent nextIntent = new Intent(welcomeMenu.this, MyHomeScreen.class);
-        	welcomeMenu.this.startActivity(nextIntent);
+        	Intent weekly_intent = new Intent(welcomeMenu.this, MyHomeScreen.class);
+        	welcomeMenu.this.startActivity(weekly_intent);
+        }});
+        
+        Button today = (Button) findViewById(R.id.today);
+        today.setOnClickListener(new OnClickListener(){
+        public void onClick(View arg0) {
+            SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+            SharedPreferences.Editor editor = settings.edit();
+        	EditText username = (EditText) findViewById(R.id.nameinput);
+        	editor.putString("Name",username.getText().toString());
+        	editor.commit();
+        	
+        	Intent today_intent = new Intent(welcomeMenu.this, TodayPage.class);
+          	welcomeMenu.this.startActivity(today_intent);
         }});
         
         Button stats = (Button) findViewById(R.id.stats);
