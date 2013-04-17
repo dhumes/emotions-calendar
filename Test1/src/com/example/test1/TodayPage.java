@@ -128,10 +128,10 @@ public class TodayPage extends Activity
 	     //Set_Emotions.ImageButtonToChange = b;
 	}
 	
-	public static Drawable findImageToUse(int i )
+	/*public static Drawable findImageToUse(int i )
 	{
 		
 	
-	}
+	}*/
 
 }
