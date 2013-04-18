@@ -70,12 +70,13 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int homescreenlayout=0x7f030001;
-        public static final int set_emotions=0x7f030002;
-        public static final int splash_screen=0x7f030003;
-        public static final int stats_configure=0x7f030004;
-        public static final int todaypagelayout=0x7f030005;
-        public static final int welcome_screen=0x7f030006;
+        public static final int display_statistics=0x7f030001;
+        public static final int homescreenlayout=0x7f030002;
+        public static final int set_emotions=0x7f030003;
+        public static final int splash_screen=0x7f030004;
+        public static final int stats_configure=0x7f030005;
+        public static final int todaypagelayout=0x7f030006;
+        public static final int welcome_screen=0x7f030007;
     }
     public static final class menu {
         public static final int activity_bar=0x7f070000;

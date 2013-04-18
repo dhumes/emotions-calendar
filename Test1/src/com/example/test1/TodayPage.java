@@ -11,9 +11,12 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -31,17 +34,27 @@ public class TodayPage extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.todaypagelayout);
+		SharedPreferences emo = getSharedPreferences("Emotions",0);
 		
 		//Button MorningSet = (Button) findViewById(R.id.button1);
-		Button MorningChange = (Button) findViewById(R.id.morningChange);
+		ImageButton MorningChange = (ImageButton) findViewById(R.id.morningChange);
+		//MorningChange.setBackgroundResource(findImageToUse((int) emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").charAt(0)));
+		findImageToUse((int) emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").charAt(0));
+		MorningChange.setBackgroundResource(findImageToUse(0));
+		
 		
 		//Button AfternoonSet = (Button) findViewById(R.id.button2);
-		Button AfternoonChange = (Button) findViewById(R.id.afternoonChange);
+		ImageButton AfternoonChange = (ImageButton) findViewById(R.id.afternoonChange);
+		//AfternoonChange.setBackgroundResource(findImageToUse((int) emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").charAt(1)));
+		findImageToUse((int) emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").charAt(1));
+
 		
 		//Button EveningSet = (Button) findViewById(R.id.button3);
-		Button EveningChange = (Button) findViewById(R.id.eveningChange);
-		
-		ArrayList<Button> buttonsToFeelingSelect = new ArrayList<Button>();
+		ImageButton EveningChange = (ImageButton) findViewById(R.id.eveningChange);
+		//EveningChange.setBackgroundResource(findImageToUse((int) emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").charAt(2)));
+		findImageToUse((int) emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").charAt(2));
+
+		ArrayList<ImageButton> buttonsToFeelingSelect = new ArrayList<ImageButton>();
 		//buttonsToFeelingSelect.add(MorningSet);
 		buttonsToFeelingSelect.add(MorningChange);
 		//buttonsToFeelingSelect.add(AfternoonSet);
@@ -57,7 +70,7 @@ public class TodayPage extends Activity
 			}
 		};
 		
-		for (Button b : buttonsToFeelingSelect)
+		for (ImageButton b : buttonsToFeelingSelect)
 		{ b.setOnClickListener(toFeelingSelect); }
 			
 		date = new SimpleDateFormat("E - mm-dd", Locale.US);
@@ -65,25 +78,35 @@ public class TodayPage extends Activity
 		TextView dateText = new TextView(this);
 		dateText.setGravity(Gravity.CENTER);
 		dateText.setText("Today - " + date);
-		setContentView(dateText);		
+		//setContentView(dateText);		
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.today_page, menu);
-		return true;
-	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
+		int time = 0;
 		//button on Today page that was pressed
-		Button pressed = (Button)findViewById(requestCode);
+		ImageButton pressed = (ImageButton)findViewById(requestCode);
 		//integer value of emotion selected on selection page
 		int emotion = (Integer)data.getExtras().get("emotionSelected");	
+		switch (pressed.getId()){
+			case R.id.morningChange:
+				time = 0;
+				break;
+			case R.id.afternoonChange:
+				time = 1;
+				break;
+			case R.id.eveningChange:
+				time = 2;}
+				
+		SharedPreferences emo = getSharedPreferences("Emotions",0);
+		String initial_num = emo.getString("Emotions", "000");
+		String newNum = initial_num.substring(0, time) + (char)emotion + initial_num.substring(time+1);
+		SharedPreferences.Editor editor = emo.edit();
+		editor.putString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), newNum);
 		//switches image
+		editor.commit();
 		pressed.setBackgroundResource(findImageToUse(emotion));
 	}
 	
@@ -101,20 +124,6 @@ public class TodayPage extends Activity
 	protected void onStop()
 	{
 		super.onStop();
-	}
-	
-	protected void onPause()//save data!
-	{
-		super.onResume();
-		String FILENAME = date.toString();
-		String string = "information to add";
-
-		FileOutputStream fos;
-		try {
-			fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-			fos.write(string.getBytes());
-			fos.close();
-		} catch (FileNotFoundException e) {e.printStackTrace();} catch (IOException e) {e.printStackTrace();}
 	}
 	
 	protected void onResume()//load what changed
@@ -152,5 +161,33 @@ public class TodayPage extends Activity
 		
 	
 	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+      MenuInflater inflater = getMenuInflater();
+      inflater.inflate(R.menu.activity_bar, menu);
+      return true;
+    }
+    
+    
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	
+        switch (item.getItemId()) {
+        case R.id.Today:
+      		Intent today_intent = new Intent(TodayPage.this, TodayPage.class);
+      		TodayPage.this.startActivity(today_intent);
+      		break;
+        case R.id.Weekly:
+        	Intent weekly_intent = new Intent(TodayPage.this, MyHomeScreen.class);
+        	TodayPage.this.startActivity(weekly_intent);
+      	break;
+        case R.id.Stats:
+        	Intent stats_intent = new Intent(TodayPage.this, ConfigureStats.class);
+        	TodayPage.this.startActivity(stats_intent);
+          break;
+        default:
+          break;
+        }
+        return true;
+      }
 
 }

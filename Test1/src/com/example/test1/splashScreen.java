@@ -20,7 +20,7 @@ public class splashScreen extends Activity {
             Drawable calendar = getResources().getDrawable(R.drawable.calendar);
 
             // setting the opacity (alpha)
-            calendar.setAlpha(85);
+            calendar.setAlpha(75);
 
 
             // thread for displaying the SplashScreen

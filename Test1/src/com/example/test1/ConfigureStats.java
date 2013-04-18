@@ -223,25 +223,25 @@ public class ConfigureStats extends Activity {
       return true;
     }
     
-    @Override
+    @Override  
     public boolean onOptionsItemSelected(MenuItem item) {
     	
-      switch (item.getItemId()) {
-      /*case R.id.toPage2:
-    	Intent page2_intent = new Intent(welcomeMenu.this, Page2.class);
-      	welcomeMenu.this.startActivity(page2_intent);
-        break;
-      case R.id.mainactivity:
-    	Intent mainactivity_intent = new Intent(welcomeMenu.this, MainActivity.class);
-      	welcomeMenu.this.startActivity(mainactivity_intent);
-        break;
-      case R.id.homescreen:
-    	Intent homescreen_intent = new Intent(welcomeMenu.this, MyHomeScreen.class);
-    	welcomeMenu.this.startActivity(homescreen_intent);*/
-      default:
-        break;
+        switch (item.getItemId()) {
+        case R.id.Today:
+      		Intent today_intent = new Intent(ConfigureStats.this, TodayPage.class);
+      		ConfigureStats.this.startActivity(today_intent);
+      		break;
+        case R.id.Weekly:
+        	Intent weekly_intent = new Intent(ConfigureStats.this, MyHomeScreen.class);
+        	ConfigureStats.this.startActivity(weekly_intent);
+      	break;
+        case R.id.Stats:
+        	Intent stats_intent = new Intent(ConfigureStats.this, ConfigureStats.class);
+        	ConfigureStats.this.startActivity(stats_intent);
+          break;
+        default:
+          break;
+        }
+        return true;
       }
-      return true;
-    }
-    
 }

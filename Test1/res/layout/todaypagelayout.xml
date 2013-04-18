@@ -17,7 +17,7 @@
           android:layout_alignParentLeft="false"
           android:layout_alignParentRight="false"
           android:layout_alignParentTop="false"
-          android:layout_marginRight="15dp"
+          android:layout_marginRight="43dp"
           android:layout_marginTop="74dp"
           android:layout_toLeftOf="@+id/morningChange"
           android:text="Morning"
@@ -32,7 +32,7 @@
             android:text="Afternoon"
             android:textSize="25sp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/afternoonChange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:minHeight="70dp"
             android:minWidth="70dp"
             android:onClick="reply_click(this)"
-            android:text="Set..." />
+             />
 
         <TextView
             android:id="@+id/textView3"
@@ -50,11 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/eveningChange"
             android:layout_alignRight="@+id/textView1"
-            android:layout_gravity="center"
             android:text="Evening"
             android:textSize="25sp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/eveningChange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,11 +63,10 @@
             android:contentDescription="Click Me"
             android:minHeight="70dp"
             android:minWidth="70dp"
-            android:layout_gravity="center"
             android:onClick="reply_click(this)"
-            android:text="Set..." />
+            />
 
-        <Button
+        <ImageButton
             android:id="@+id/morningChange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,6 +78,6 @@
             android:minHeight="70dp"
             android:minWidth="70dp"
             android:onClick="reply_click(this)"
-            android:text="Set..." />
+            />
 
 </RelativeLayout>

@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" 
     android:layout_height="match_parent" 
-    android:orientation="vertical"    
-    android:background="@drawable/calendar">
+    android:orientation="vertical"    >
  <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
@@ -15,6 +14,7 @@
         android:paddingRight="10dp"
         android:text="Motion of My Emotions\nBy\nTeam 20"
         android:textColor="#880000"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="@drawable/calendar" />
     
 </LinearLayout>
