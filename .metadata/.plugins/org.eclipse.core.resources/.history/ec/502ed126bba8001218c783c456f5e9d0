@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id5/numHappy"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#11CC11"  >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Statistics"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+<RelativeLayout 
+android:id="@+id5/numHappy"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical" >
+<TextView
+android:id="@+id/TextView01"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignParentLeft="true"
+android:layout_alignParentTop="true"
+android:layout_marginLeft="42dp"
+android:layout_marginTop="30dp"
+android:text="Happy"
+android:textColor="#11DF11"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+<TextView
+android:id="@+id/numsad"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignBaseline="@+id/textView1"
+android:layout_alignBottom="@+id/textView1"
+android:layout_alignLeft="@+id/numHappy"
+android:text="numSad"
+android:textColor="#DF1111"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+<TextView
+android:id="@+id/numangry"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignBaseline="@+id/TextView03"
+android:layout_alignBottom="@+id/TextView03"
+android:layout_alignLeft="@+id/numsad"
+android:text="numAngry"
+android:textColor="#DF1111"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+<TextView
+android:id="@+id/numexcited"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignBaseline="@+id/TextView04"
+android:layout_alignBottom="@+id/TextView04"
+android:layout_alignLeft="@+id/numangry"
+android:text="numExcited"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+<TextView
+android:id="@+id/numbored"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_above="@+id/TextView06"
+android:layout_alignLeft="@+id/numexcited"
+android:text="numBored"
+android:textColor="#FFFFFF"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+<TextView
+android:id="@+id/numtired"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignBaseline="@+id/TextView06"
+android:layout_alignBottom="@+id/TextView06"
+android:layout_alignLeft="@+id/numbored"
+android:text="numTired"
+android:textColor="#FFFFFF"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+<TextView
+android:id="@+id/numHappy"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_above="@+id/textView1"
+android:layout_alignParentRight="true"
+android:layout_marginRight="44dp"
+android:text="numHappy"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+<TextView
+android:id="@+id/textView1"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignLeft="@+id/TextView01"
+android:layout_below="@+id/TextView01"
+android:layout_marginTop="30dp"
+android:text="Sad"
+android:textColor="#DF1111"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+<TextView
+android:id="@+id/TextView03"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignLeft="@+id/textView1"
+android:layout_below="@+id/textView1"
+android:layout_marginTop="29dp"
+android:text="Angry"
+android:textColor="#DF1111"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+<TextView
+android:id="@+id/TextView04"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignLeft="@+id/TextView03"
+android:layout_below="@+id/TextView03"
+android:layout_marginTop="26dp"
+android:text="Excited"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+<TextView
+android:id="@+id/TextView05"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignLeft="@+id/TextView04"
+android:layout_below="@+id/TextView04"
+android:layout_marginTop="28dp"
+android:text="Bored"
+android:textColor="#FFFFFF"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+
+<TextView
+android:id="@+id/TextView06"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignRight="@+id/TextView05"
+android:layout_below="@+id/TextView05"
+android:layout_marginTop="24dp"
+android:layout_alignLeft="@+id/TextView05"
+android:text="Tired"
+android:textColor="#FFFFFF"
+android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
+</LinearLayout>

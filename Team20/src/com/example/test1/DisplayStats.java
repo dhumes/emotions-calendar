@@ -1,0 +1,135 @@
+package com.example.test1;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.example.test1.TodayPage;
+
+public class DisplayStats extends Activity { 
+    /** Called when the activity is first created. */
+	final Context context = this;
+	
+    String begin_date;
+    String end_date;
+    String time;
+    
+    int[] emo_count = {0,0, 0, 0,0,0,0};
+    
+	public static String[] months = {"Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+};
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.display_statistics);
+        
+        
+    	SharedPreferences emo = getSharedPreferences("Emotions",0);
+        begin_date = emo.getString("Start Date", "hi");
+        end_date = emo.getString("End Date", "hi");
+        time = emo.getString("Time","hi");
+        
+        
+        int begin_day = Integer.parseInt(begin_date.substring(2,4));
+        int begin_month = Integer.parseInt(begin_date.substring(0,1));
+        int begin_year = Integer.parseInt(begin_date.substring(5,9));
+
+        int end_month = Integer.parseInt(end_date.substring(0,1));
+        int end_day = Integer.parseInt(end_date.substring(2,4));
+        int end_year = Integer.parseInt(end_date.substring(5,9));
+        for(int year = begin_year; year<=end_year; ++year){
+        for (int month = begin_month; month <=end_month; ++month){
+        for(int day=begin_day; day<=end_day;++day){
+        	String emotions = emo.getString(month + "-" + String.format("%02d",day) + "-" + year, "000");
+            if (time.equals("Morning")){
+            	emo_count[Integer.parseInt(emotions.charAt(0)+"")]++;
+            }
+            else if(time.equals("Afternoon")){
+            	emo_count[Integer.parseInt(emotions.charAt(1)+"")]++;
+            }
+            else if(time.equals("Night")){
+            	emo_count[Integer.parseInt(emotions.charAt(2)+"")]++;
+            }
+            else{
+        	for (int j = 0; j<3; ++j){
+        		emo_count[Integer.parseInt(emotions.charAt(j)+"")]++;
+        	}}
+        }}}
+
+        TextView numhappy = (TextView) findViewById(R.id.numHappy);
+        TextView numsad = (TextView) findViewById(R.id.numsad);
+        TextView numangry = (TextView) findViewById(R.id.numangry);
+        TextView numexcited = (TextView) findViewById(R.id.numexcited);
+        TextView numbored = (TextView) findViewById(R.id.numbored);
+        TextView numtired = (TextView) findViewById(R.id.numtired);
+        
+        numhappy.setText(Integer.toString(emo_count[1]));
+        numsad.setText(Integer.toString(emo_count[2]));
+        numangry.setText(Integer.toString(emo_count[3]));
+        numexcited.setText(Integer.toString(emo_count[6]));
+        numbored.setText(Integer.toString(emo_count[4]));
+        numtired.setText(Integer.toString(emo_count[5]));
+        
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText(time + " Emotions from " + months[begin_month-1] + " " + begin_day + ", " +begin_year +" to " + months[end_month-1] + " " + end_day + ", " +end_year);
+        
+        /*Button toPage1 = (Button) findViewById(R.id.toPage1);
+		Button toPage = (Button) findViewById(R.id.toPage2);
+		toPage1.setText(begin_date);
+		toPage.setText(new SimpleDateFormat("M-dd-yyyy", Locale.US).format(new Date()));
+*/        }
+    
+    
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+          MenuInflater inflater = getMenuInflater();
+          inflater.inflate(R.menu.activity_bar, menu);
+          return true;
+        }
+        
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+        	
+          switch (item.getItemId()) {
+          case R.id.Today:
+        	Intent today_intent = new Intent(DisplayStats.this, TodayPage.class);
+          	DisplayStats.this.startActivity(today_intent);
+            break;
+          case R.id.Weekly:
+        	Intent weekly_intent = new Intent(DisplayStats.this, MyHomeScreen.class);
+        	DisplayStats.this.startActivity(weekly_intent);
+        	break;
+          case R.id.Stats:
+          	Intent stats_intent = new Intent(DisplayStats.this, ConfigureStats.class);
+            DisplayStats.this.startActivity(stats_intent);
+            break;
+          default:
+            break;
+          }
+          return true;
+        }    
+}
+    
+    

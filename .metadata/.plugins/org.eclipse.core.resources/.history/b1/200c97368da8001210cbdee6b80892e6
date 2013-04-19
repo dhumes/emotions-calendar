@@ -1,0 +1,283 @@
+package com.example.test1;
+
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Locale;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.text.format.DateFormat;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnClickListener;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+
+public class ConfigureStats extends Activity {
+	public static String[] months = {"Jan",
+	                                 "Feb",
+	                                 "Mar",
+	                                 "Apr",
+	                                 "May",
+	                                 "Jun",
+	                                 "Jul",
+	                                 "Aug",
+	                                 "Sep",
+	                                 "Oct",
+	                                 "Nov",
+	                                 "Dec",
+	};
+	public static int month;
+	public static int day;
+	public static int year;
+	public static String menu_type;
+	public static boolean start_or_end = true;
+	public static String period = "All";
+	public static String begin_date;
+	public static String end_date;
+
+	
+	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.stats_configure);
+		
+		month = 0;
+		day = 1;
+		year = 2013;
+		Button start_day = (Button) findViewById(R.id.start_day);
+		start_day.setText(Integer.toString(day));
+	    registerForContextMenu(start_day);
+	    
+		Button start_month = (Button) findViewById(R.id.start_month);
+		start_month.setText((months[month]));
+	    registerForContextMenu(start_month);
+	    
+		Button start_year = (Button) findViewById(R.id.start_year);
+		start_year.setText(Integer.toString(year));
+	    registerForContextMenu(start_year);
+	    
+	    String formatted_date = new SimpleDateFormat("M-dd-yyyy", Locale.US).format(new Date());
+	    formatted_date.split(-");
+	    
+		Button end_day = (Button) findViewById(R.id.end_day);
+		end_day.setText(Integer.toString(day));
+	    registerForContextMenu(end_day);
+	    
+		Button end_month = (Button) findViewById(R.id.end_month);
+		end_month.setText((months[month]));
+	    registerForContextMenu(end_month);
+	    
+		Button end_year = (Button) findViewById(R.id.end_year);
+		end_year.setText(Integer.toString(year));
+	    registerForContextMenu(end_year);
+	    
+	    Button time = (Button) findViewById(R.id.time_of_day);
+	    time.setText(period);
+	    registerForContextMenu(time);
+	    
+	    Button go = (Button) findViewById(R.id.go);
+	    go.setOnClickListener(new OnClickListener(){
+	        public void onClick(View arg0) {
+	        	
+	        	Button start_day = (Button) findViewById(R.id.start_day);
+	    	    String startDay = start_day.getText().toString();
+	        	
+	    		Button start_month = (Button) findViewById(R.id.start_month);
+	    		String startMonth = Integer.toString(Arrays.asList(months).indexOf(start_month.getText()) + 1);
+	    	    
+	    		Button start_year = (Button) findViewById(R.id.start_year);
+	    	    String startYear = start_year.getText().toString();
+	    		
+	    		Button end_day = (Button) findViewById(R.id.end_day);
+	    	    String endDay = end_day.getText().toString();
+
+	    		Button end_month = (Button) findViewById(R.id.end_month);
+	    		String endMonth = Integer.toString(Arrays.asList(months).indexOf(end_month.getText())+1);
+
+	    		Button end_year = (Button) findViewById(R.id.end_year);
+	    	    String endYear = end_year.getText().toString();
+	    	    SharedPreferences emo = getSharedPreferences("Emotions",0);
+	    		SharedPreferences.Editor editor = emo.edit();
+	    		editor.putString("Start Date", startMonth +'-'+ startDay +'-'+ startYear);
+	    		editor.putString("End Date", endMonth +'-'+ endDay +'-'+ endYear);
+	    		editor.commit();
+	    		Intent stats_intent = new Intent(ConfigureStats.this, DisplayStats.class);
+	    		ConfigureStats.this.startActivity(stats_intent);
+	        }});
+	}
+	private void CreateDayMenu(Menu menu)
+    {
+    	 menu.setQwertyMode(true);
+    	 int num_days;
+    	 switch(month){
+    	 case 1:
+    		 num_days = 28;
+    		 break;
+    	 case 3:
+    		 num_days = 30;
+    		 break;
+    	 case 5:
+    		 num_days = 30;
+    		 break;
+    	 case 8:
+    		 num_days = 30;
+    		 break;
+    	 case 10:
+    		 num_days = 30;
+    		 break;
+    	default:
+    		 num_days = 31;
+    		 break;
+    	 }
+    	 for (int i = 1; i<=num_days; ++i){
+    		 menu.add(0,i,i,Integer.toString(i));
+    	 }
+     }
+	private void CreateMonthMenu(Menu menu)
+    {
+    	 menu.setQwertyMode(true);
+    	 for (int i = 0; i<12; ++i){
+    		 menu.add(0,i,i,months[i]);
+    	 }
+     }
+	
+	private void CreateYearMenu(Menu menu){
+		menu.setQwertyMode(true);
+		for (int i = 0; i<5; ++i){
+			menu.add(0,i,i,Integer.toString(year-i));
+		}
+	}
+	
+	public void CreateTimeMenu(Menu menu){
+		menu.setQwertyMode(true);
+		menu.add(0,0,0,"Morning");
+		menu.add(0,1,1,"Afternoon");
+		menu.add(0,2,2,"Night");
+		menu.add(0,3,3,"All");
+	}
+ 
+    private boolean MenuChoice(MenuItem item)
+    {       
+    	
+		SharedPreferences emo = getSharedPreferences("Emotions",0);
+		SharedPreferences.Editor editor = emo.edit();
+    	if (menu_type=="day"){
+    	day = item.getItemId();
+    	String day_str = Integer.toString(day);
+    	if (start_or_end){
+    	Button start_day = (Button) findViewById(R.id.start_day);
+		start_day.setText(day_str);}
+    	else{
+    		Button end_day = (Button) findViewById(R.id.end_day);
+    		end_day.setText(day_str);
+    	}
+    	}
+    	
+    	if (menu_type == "month"){
+    		if(start_or_end){
+    		Button start_month = (Button) findViewById(R.id.start_month);
+    		start_month.setText(item.getTitle());}
+    		else{
+        		Button end_month = (Button) findViewById(R.id.end_month);
+        		end_month.setText(item.getTitle());
+    		}
+    	}
+    	
+    	if (menu_type == "year"){
+    		if(start_or_end){
+    		Button start_year = (Button) findViewById(R.id.start_year);
+    		start_year.setText(item.getTitle());}
+    		else{
+        		Button end_year = (Button) findViewById(R.id.end_year);
+        		end_year.setText(item.getTitle());
+    		}
+    	}
+    	
+    	if(menu_type=="time"){
+    		Button time = (Button) findViewById(R.id.time_of_day);
+    		time.setText(item.getTitle());
+    		editor.putString("Time", item.getTitle().toString());
+    		editor.commit();
+    	}
+
+        return false;
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, 
+    ContextMenuInfo menuInfo) 
+    {
+         super.onCreateContextMenu(menu, view, menuInfo);
+         if (view == (Button) findViewById(R.id.start_day) || view == (Button) findViewById(R.id.end_day)){
+        	 start_or_end=true;
+        	 if(view == (Button) findViewById(R.id.end_day))
+        		 start_or_end=false;
+        	 menu.setHeaderTitle("Select Day");
+        	 menu_type = "day";
+        	 CreateDayMenu(menu);
+         }
+         if (view == (Button) findViewById(R.id.start_month) || view == (Button) findViewById(R.id.end_month)){
+        	 start_or_end=true;
+        	 if(view == (Button) findViewById(R.id.end_month))
+        		 start_or_end=false;
+        	 menu.setHeaderTitle("Select Month");
+        	 menu_type = "month";
+        	 CreateMonthMenu(menu);
+         }
+         if (view == (Button) findViewById(R.id.start_year) || view == (Button) findViewById(R.id.end_year)){
+        	 start_or_end=true;
+        	 if(view == (Button) findViewById(R.id.end_year))
+        		 start_or_end=false;
+        	 menu.setHeaderTitle("Select Year");
+        	 menu_type = "year";
+        	 CreateYearMenu(menu);
+         }
+         if(view==(Button) findViewById(R.id.time_of_day)){
+        	 menu_type = "time";
+        	 menu.setHeaderTitle("Select Time of Day");
+        	 CreateTimeMenu(menu);
+         }
+    }
+ 
+    @Override
+    public boolean onContextItemSelected(MenuItem item)
+    {    
+    	
+        return MenuChoice(item);    
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+      MenuInflater inflater = getMenuInflater();
+      inflater.inflate(R.menu.activity_bar, menu);
+      return true;
+    }
+    
+    @Override  
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	
+        switch (item.getItemId()) {
+        case R.id.Today:
+      		Intent today_intent = new Intent(ConfigureStats.this, TodayPage.class);
+      		ConfigureStats.this.startActivity(today_intent);
+      		break;
+        case R.id.Weekly:
+        	Intent weekly_intent = new Intent(ConfigureStats.this, MyHomeScreen.class);
+        	ConfigureStats.this.startActivity(weekly_intent);
+      	break;
+        case R.id.Stats:
+        	Intent stats_intent = new Intent(ConfigureStats.this, ConfigureStats.class);
+        	ConfigureStats.this.startActivity(stats_intent);
+          break;
+        default:
+          break;
+        }
+        return true;
+      }
+}
