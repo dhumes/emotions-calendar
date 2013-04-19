@@ -15,33 +15,6 @@
         android:text="What day would you like to see?"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/byear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/bmonth"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="79dp"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/bmonth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="66dp"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/bday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/bmonth"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="40dp"
-        android:text="Button" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -54,6 +27,26 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/byear"
+        android:layout_alignBottom="@+id/byear"
+        android:layout_alignLeft="@+id/textView3"
+        android:text="Year"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/bmonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/bday"
+        android:layout_marginRight="64dp"
+        android:layout_marginTop="46dp"
+        android:text=" " />
+
+    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,14 +56,31 @@
         android:text="Month"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <Button
+        android:id="@+id/bday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/byear"
-        android:layout_alignBottom="@+id/byear"
-        android:layout_alignLeft="@+id/textView3"
-        android:text="Year"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignLeft="@+id/bmonth"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="48dp"
+        android:text=" " />
+
+    <Button
+        android:id="@+id/byear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bmonth"
+        android:layout_below="@+id/bmonth"
+        android:layout_marginTop="46dp"
+        android:text=" " />
+
+    <Button
+        android:id="@+id/bgo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/byear"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:text="Go" />
 
 </RelativeLayout>
