@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 import android.os.Bundle;
@@ -38,20 +39,20 @@ public class TodayPage extends Activity
 		//Button MorningSet = (Button) findViewById(R.id.button1);
 		ImageButton MorningChange = (ImageButton) findViewById(R.id.morningChange);
 		//MorningChange.setBackgroundResource(findImageToUse((int) emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").charAt(0)));
-		MorningChange.setBackgroundResource(findImageToUse((Integer.parseInt(emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").substring(0,1)))));
+		MorningChange.setBackgroundResource(findImageToUse((Integer.parseInt(emo.getString(new SimpleDateFormat("MM-dd-yyyy", Locale.US).format(new Date()), "000").substring(0,1)))));
 		//MorningChange.setBackgroundResource(findImageToUse(0));
 		
 		
 		//Button AfternoonSet = (Button) findViewById(R.id.button2);
 		ImageButton AfternoonChange = (ImageButton) findViewById(R.id.afternoonChange);
 		//AfternoonChange.setBackgroundResource(findImageToUse((int) emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").charAt(1)));
-		AfternoonChange.setBackgroundResource(findImageToUse((Integer.parseInt(emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").substring(1,2)))));
+		AfternoonChange.setBackgroundResource(findImageToUse((Integer.parseInt(emo.getString(new SimpleDateFormat("MM-dd-yyyy", Locale.US).format(new Date()), "000").substring(1,2)))));
 
 		
 		//Button EveningSet = (Button) findViewById(R.id.button3);
 		ImageButton EveningChange = (ImageButton) findViewById(R.id.eveningChange);
 		//EveningChange.setBackgroundResource(findImageToUse((int) emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").charAt(2)));
-	    EveningChange.setBackgroundResource(findImageToUse((Integer.parseInt(emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").substring(2,emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").length())))));
+	    EveningChange.setBackgroundResource(findImageToUse((Integer.parseInt(emo.getString(new SimpleDateFormat("MM-dd-yyyy", Locale.US).format(new Date()), "000").substring(2,emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000").length())))));
 
 		ArrayList<ImageButton> buttonsToFeelingSelect = new ArrayList<ImageButton>();
 		//buttonsToFeelingSelect.add(MorningSet);
@@ -100,10 +101,10 @@ public class TodayPage extends Activity
 				time = 2;}
 				
 		SharedPreferences emo = getSharedPreferences("Emotions",0);
-		String initial_num = emo.getString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), "000");
+		String initial_num = emo.getString(new SimpleDateFormat("MM-dd-yyyy", Locale.US).format(new Date()), "000");
 		String newNum = initial_num.substring(0, time) + String.valueOf(emotion) + initial_num.substring(time+1,initial_num.length());
 		SharedPreferences.Editor editor = emo.edit();
-		editor.putString(new SimpleDateFormat("EEEE mm-dd-yyyy", Locale.US).toString(), newNum);
+		editor.putString(new SimpleDateFormat("MM-dd-yyyy", Locale.US).format(new Date()), newNum);
 		//switches image
 		editor.commit();
 		pressed.setBackgroundResource(findImageToUse(emotion));
