@@ -46,7 +46,10 @@
             android:name="com.example.test1.TodayPage"
             android:label="@string/app_name" >
         </activity>
-
+		<activity
+            android:name="com.example.test1.DisplayStats"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

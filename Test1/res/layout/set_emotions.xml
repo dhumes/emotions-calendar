@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal" 
+    android:background="#4FE084">
 
     <TextView
         android:id="@+id/textView1"
@@ -11,16 +12,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
-        android:text="How do you feel?" />
-
-    <ImageButton
-        android:id="@+id/happy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="48dp"
-        android:layout_toLeftOf="@+id/textView1"
-        android:src="@drawable/happy" />
+        android:text="How do you feel?"
+        android:textSize="20sp" />
 
     <ImageButton
         android:id="@+id/setSick"
@@ -28,7 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/setExcited"
         android:layout_alignTop="@+id/setShy"
-        android:src="@drawable/sick" />
+        android:maxHeight="72dp"
+        android:maxWidth="72dp"
+        android:src="@drawable/tired" />
 
     <ImageButton
         android:id="@+id/setShy"
@@ -36,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/happy"
         android:layout_centerVertical="true"
-        android:src="@drawable/shy" />
+        android:src="@drawable/bored" />
 
     <ImageButton
         android:id="@+id/setAngry"
@@ -53,14 +48,77 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/setSad"
         android:layout_alignTop="@+id/setAngry"
+        android:gravity="center"
         android:src="@drawable/excited" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/happy"
+        android:layout_below="@+id/happy"
+        android:layout_marginRight="18dp"
+        android:text="Happy" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_below="@+id/setShy"
+        android:text="Bored" />
 
     <ImageButton
         android:id="@+id/setSad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/happy"
-        android:layout_centerHorizontal="true"
+        android:layout_marginRight="48dp"
         android:src="@drawable/sad" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/setAngry"
+        android:text="Angry" />
+
+    <ImageButton
+        android:id="@+id/happy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="19dp"
+        android:src="@drawable/happy" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignRight="@+id/textView1"
+        android:text="Sad" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView5"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignLeft="@+id/TextView01"
+        android:text="Excited" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView01"
+        android:layout_below="@+id/setSick"
+        android:text="Tired" />
 
 </RelativeLayout>

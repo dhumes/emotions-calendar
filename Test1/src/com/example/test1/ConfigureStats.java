@@ -1,7 +1,13 @@
 package com.example.test1;
 
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Locale;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.ContextMenu;
@@ -13,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 
 public class ConfigureStats extends Activity {
 	public static String[] months = {"Jan",
@@ -28,19 +35,25 @@ public class ConfigureStats extends Activity {
 	                                 "Nov",
 	                                 "Dec",
 	};
-	public static int month = 0;
-	public static int day = 1;
-	public static int year = 2013;
+	public static int month;
+	public static int day;
+	public static int year;
 	public static String menu_type;
 	public static boolean start_or_end = true;
 	public static String period = "All";
+	public static String begin_date;
+	public static String end_date;
 
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stats_configure);
 		
-		
+	    String formatted_today = new SimpleDateFormat("M-dd-yyyy", Locale.US).format(new Date());
+	    String[] today_list = formatted_today.split("-");
+	    month = Integer.parseInt(today_list[0])-1;
+	    day = 1;
+	    year = Integer.parseInt(today_list[2]);
 		Button start_day = (Button) findViewById(R.id.start_day);
 		start_day.setText(Integer.toString(day));
 	    registerForContextMenu(start_day);
@@ -52,6 +65,11 @@ public class ConfigureStats extends Activity {
 		Button start_year = (Button) findViewById(R.id.start_year);
 		start_year.setText(Integer.toString(year));
 	    registerForContextMenu(start_year);
+	    
+	    
+	    month = Integer.parseInt(today_list[0])-1;
+	    day = Integer.parseInt(today_list[1]);
+	    year = Integer.parseInt(today_list[2]);
 	    
 		Button end_day = (Button) findViewById(R.id.end_day);
 		end_day.setText(Integer.toString(day));
@@ -65,10 +83,43 @@ public class ConfigureStats extends Activity {
 		end_year.setText(Integer.toString(year));
 	    registerForContextMenu(end_year);
 	    
+	    SharedPreferences emo = getSharedPreferences("Emotions",0);
+	    period = emo.getString("Time","All");
+	    
 	    Button time = (Button) findViewById(R.id.time_of_day);
 	    time.setText(period);
 	    registerForContextMenu(time);
+	    
+	    Button go = (Button) findViewById(R.id.go);
+	    //go.setText(String.format("%02d",Integer.parseInt(start_day.getText()+"")));
+	    go.setOnClickListener(new OnClickListener(){
+	        public void onClick(View arg0) {
+	        	
+	        	Button start_day = (Button) findViewById(R.id.start_day);
+	    	    String startDay = String.format("%02d",Integer.parseInt(start_day.getText()+""));
+	        	
+	    		Button start_month = (Button) findViewById(R.id.start_month);
+	    		String startMonth = Integer.toString(Arrays.asList(months).indexOf(start_month.getText()) + 1);
+	    	    
+	    		Button start_year = (Button) findViewById(R.id.start_year);
+	    	    String startYear = start_year.getText().toString();
+	    		
+	    		Button end_day = (Button) findViewById(R.id.end_day);
+	    	    String endDay = String.format("%02d",Integer.parseInt(end_day.getText()+""));
 
+	    		Button end_month = (Button) findViewById(R.id.end_month);
+	    		String endMonth = Integer.toString(Arrays.asList(months).indexOf(end_month.getText())+1);
+
+	    		Button end_year = (Button) findViewById(R.id.end_year);
+	    	    String endYear = end_year.getText().toString();
+	    	    SharedPreferences emo = getSharedPreferences("Emotions",0);
+	    		SharedPreferences.Editor editor = emo.edit();
+	    		editor.putString("Start Date", startMonth +'-'+ startDay +'-'+ startYear);
+	    		editor.putString("End Date", endMonth +'-'+ endDay +'-'+ endYear);
+	    		editor.commit();
+	    		Intent stats_intent = new Intent(ConfigureStats.this, DisplayStats.class);
+	    		ConfigureStats.this.startActivity(stats_intent);
+	        }});
 	}
 	private void CreateDayMenu(Menu menu)
     {
@@ -124,24 +175,11 @@ public class ConfigureStats extends Activity {
     private boolean MenuChoice(MenuItem item)
     {       
     	
-    	//return (String) item.getTitle();
+		SharedPreferences emo = getSharedPreferences("Emotions",0);
+		SharedPreferences.Editor editor = emo.edit();
     	if (menu_type=="day"){
     	day = item.getItemId();
-    	String day_str = "";
-    	switch (day){
-    	case 1:
-    		day_str = Integer.toString(day) + "st";
-    		break;
-    	case 2:
-    		day_str = Integer.toString(day) + "nd";
-    		break;
-    	case 3:
-    		day_str = Integer.toString(day) + "rd";
-    		break;
-    	default:
-    		day_str = Integer.toString(day) + "th";
-    		break;
-    	}
+    	String day_str = Integer.toString(day);
     	if (start_or_end){
     	Button start_day = (Button) findViewById(R.id.start_day);
 		start_day.setText(day_str);}
@@ -174,7 +212,10 @@ public class ConfigureStats extends Activity {
     	if(menu_type=="time"){
     		Button time = (Button) findViewById(R.id.time_of_day);
     		time.setText(item.getTitle());
+    		editor.putString("Time", item.getTitle().toString());
+    		editor.commit();
     	}
+
         return false;
     }
     @Override
@@ -183,6 +224,7 @@ public class ConfigureStats extends Activity {
     {
          super.onCreateContextMenu(menu, view, menuInfo);
          if (view == (Button) findViewById(R.id.start_day) || view == (Button) findViewById(R.id.end_day)){
+        	 start_or_end=true;
         	 if(view == (Button) findViewById(R.id.end_day))
         		 start_or_end=false;
         	 menu.setHeaderTitle("Select Day");
@@ -190,6 +232,7 @@ public class ConfigureStats extends Activity {
         	 CreateDayMenu(menu);
          }
          if (view == (Button) findViewById(R.id.start_month) || view == (Button) findViewById(R.id.end_month)){
+        	 start_or_end=true;
         	 if(view == (Button) findViewById(R.id.end_month))
         		 start_or_end=false;
         	 menu.setHeaderTitle("Select Month");
@@ -197,6 +240,7 @@ public class ConfigureStats extends Activity {
         	 CreateMonthMenu(menu);
          }
          if (view == (Button) findViewById(R.id.start_year) || view == (Button) findViewById(R.id.end_year)){
+        	 start_or_end=true;
         	 if(view == (Button) findViewById(R.id.end_year))
         		 start_or_end=false;
         	 menu.setHeaderTitle("Select Year");

@@ -74,8 +74,10 @@ public class welcomeMenu extends Activity {
     		}); 
         Button select_user = (Button) findViewById(R.id.selectUser);       
         select_user.setOnCreateContextMenuListener(this);*/
-        
-        
+        SharedPreferences name = getSharedPreferences("UserInfo", 0);
+    	EditText username = (EditText) findViewById(R.id.nameinput);
+    	username.setText(name.getString("Name", "User"));
+
         Button weekly= (Button) findViewById(R.id.weekly);
         weekly.setOnClickListener(new OnClickListener(){
         public void onClick(View arg0) {
