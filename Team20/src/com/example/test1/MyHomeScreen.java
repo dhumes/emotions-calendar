@@ -2,9 +2,11 @@ package com.example.test1;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
@@ -128,5 +130,31 @@ public class MyHomeScreen extends Activity {
 			menu.add(0,i,i,Integer.toString(year-i));
 		}
 	}
+	
+	@Override
+    public boolean onContextItemSelected(MenuItem item)
+    {    
+    	
+        return MenuChoice(item);    
+    }
+	
+	private boolean MenuChoice(MenuItem item)
+    {       
+    	if (menu_type=="day"){
+    		Button bday = (Button) findViewById(R.id.bday);
+    		bday.setText(item.getTitle());
+    	}
+    	
+    	if (menu_type == "month"){
+        		Button bmonth = (Button) findViewById(R.id.bmonth);
+        		bmonth.setText(item.getTitle());
+    		}
+    	
+    	if (menu_type == "year"){
+        		Button byear = (Button) findViewById(R.id.byear);
+        		byear.setText(item.getTitle());
+    		}
+        return false;
+    }
 
 }
