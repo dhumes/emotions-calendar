@@ -27,7 +27,7 @@ public class MyHomeScreen extends Activity {
 		"Nov",
 		"Dec",
 	};
-	
+
 	public static int month;
 	public static int day;
 	public static int year;
@@ -37,6 +37,17 @@ public class MyHomeScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.homescreenlayout);
+		
+		Button bday = (Button) findViewById(R.id.bday);
+		Button bmonth = (Button) findViewById(R.id.bmonth);
+		Button byear = (Button) findViewById(R.id.byear);
+		
+		registerForContextMenu(bday);
+	    registerForContextMenu(bmonth);
+	    registerForContextMenu(byear);
+		
+	    
+
 
 	};
 
@@ -64,28 +75,28 @@ public class MyHomeScreen extends Activity {
 	{
 		super.onDestroy();
 	}
-	
+
 	@Override
-    public void onCreateContextMenu(ContextMenu menu, View view, 
-    ContextMenuInfo menuInfo) 
-    {
-         super.onCreateContextMenu(menu, view, menuInfo);
-         if (view == (Button) findViewById(R.id.bday)){
-        	 menu.setHeaderTitle("Select Day");
-        	 menu_type = "day";
-        	 CreateDayMenu(menu);
-         }
-         if (view == (Button) findViewById(R.id.bmonth)){
-        	 menu.setHeaderTitle("Select Month");
-        	 menu_type = "month";
-        	 CreateMonthMenu(menu);
-         }
-         if (view == (Button) findViewById(R.id.start_year)){
-        	 menu.setHeaderTitle("Select Year");
-        	 menu_type = "year";
-        	 CreateYearMenu(menu);
-         }
-    }
+	public void onCreateContextMenu(ContextMenu menu, View view, 
+			ContextMenuInfo menuInfo) 
+	{
+		super.onCreateContextMenu(menu, view, menuInfo);
+		if (view == (Button) findViewById(R.id.bday)){
+			menu.setHeaderTitle("Select Day");
+			menu_type = "day";
+			CreateDayMenu(menu);
+		}
+		if (view == (Button) findViewById(R.id.bmonth)){
+			menu.setHeaderTitle("Select Month");
+			menu_type = "month";
+			CreateMonthMenu(menu);
+		}
+		if (view == (Button) findViewById(R.id.byear)){
+			menu.setHeaderTitle("Select Year");
+			menu_type = "year";
+			CreateYearMenu(menu);
+		}
+	}
 
 	private void CreateDayMenu(Menu menu)
 	{
@@ -115,46 +126,46 @@ public class MyHomeScreen extends Activity {
 			menu.add(0,i,i,Integer.toString(i));
 		}
 	}
-	
+
 	private void CreateMonthMenu(Menu menu)
-    {
-    	 menu.setQwertyMode(true);
-    	 for (int i = 0; i<12; ++i){
-    		 menu.add(0,i,i,months[i]);
-    	 }
-     }
-	
+	{
+		menu.setQwertyMode(true);
+		for (int i = 0; i<12; ++i){
+			menu.add(0,i,i,months[i]);
+		}
+	}
+
 	private void CreateYearMenu(Menu menu){
 		menu.setQwertyMode(true);
 		for (int i = 0; i<5; ++i){
-			menu.add(0,i,i,Integer.toString(year-i));
+			menu.add(0,i,i,Integer.toString(2013));
 		}
 	}
-	
+
 	@Override
-    public boolean onContextItemSelected(MenuItem item)
-    {    
-    	
-        return MenuChoice(item);    
-    }
-	
+	public boolean onContextItemSelected(MenuItem item)
+	{    
+
+		return MenuChoice(item);    
+	}
+
 	private boolean MenuChoice(MenuItem item)
-    {       
-    	if (menu_type=="day"){
-    		Button bday = (Button) findViewById(R.id.bday);
-    		bday.setText(item.getTitle());
-    	}
-    	
-    	if (menu_type == "month"){
-        		Button bmonth = (Button) findViewById(R.id.bmonth);
-        		bmonth.setText(item.getTitle());
-    		}
-    	
-    	if (menu_type == "year"){
-        		Button byear = (Button) findViewById(R.id.byear);
-        		byear.setText(item.getTitle());
-    		}
-        return false;
-    }
+	{       
+		if (menu_type=="day"){
+			Button bday = (Button) findViewById(R.id.bday);
+			bday.setText(item.getTitle());
+		}
+
+		if (menu_type == "month"){
+			Button bmonth = (Button) findViewById(R.id.bmonth);
+			bmonth.setText(item.getTitle());
+		}
+
+		if (menu_type == "year"){
+			Button byear = (Button) findViewById(R.id.byear);
+			byear.setText(item.getTitle());
+		}
+		return false;
+	}
 
 }
